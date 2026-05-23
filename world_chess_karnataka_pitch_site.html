@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Chess Championship 2026 — Karnataka Bid</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #7A6022;
+    --ivory: #F5F0E8;
+    --ivory-dark: #EDE5D4;
+    --obsidian: #0D0C0A;
+    --obsidian-mid: #1A1914;
+    --obsidian-soft: #2A2820;
+    --text-muted: #9A917C;
+    --text-dim: #5C5646;
+    --red-karnataka: #C41E3A;
+    --yellow-karnataka: #FFD700;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--obsidian);
+    color: var(--ivory);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    background: rgba(13,12,10,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-size: 1rem; letter-spacing: 0.25em; color: var(--gold); font-weight: 300; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; font-family: 'DM Mono', monospace; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .chess-grid {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image:
+      linear-gradient(rgba(201,168,76,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ivory);
+    margin-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic; color: var(--gold);
+    display: block;
+  }
+
+  .hero-year {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 300; letter-spacing: 0.1em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,168,76,0.3);
+    line-height: 1;
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem; font-weight: 300; font-style: italic;
+    color: var(--text-muted); max-width: 540px;
+    line-height: 1.8;
+    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
+    opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+  }
+
+  .btn-primary {
+    padding: 0.9rem 2.5rem;
+    background: var(--gold); color: var(--obsidian);
+    border: none; cursor: pointer;
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    padding: 0.9rem 2.5rem;
+    background: transparent; color: var(--ivory);
+    border: 1px solid rgba(201,168,76,0.4); cursor: pointer;
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+    margin: 0;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    overflow: hidden; padding: 1.2rem 0;
+    background: var(--obsidian-mid);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .marquee-inner {
+    display: flex; gap: 0; white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--text-dim); padding: 0 3rem;
+  }
+  .marquee-item span { color: var(--gold); margin-right: 3rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: rgba(201,168,76,0.4);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300; line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--ivory);
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-body {
+    font-size: 1.05rem; font-weight: 300; font-style: italic;
+    color: var(--text-muted); line-height: 2;
+    max-width: 640px;
+  }
+
+  /* ── WHY KARNATAKA ── */
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px; margin-top: 4rem;
+    border: 1px solid rgba(201,168,76,0.12);
+  }
+  .why-card {
+    padding: 2.5rem;
+    background: var(--obsidian-mid);
+    border: 1px solid rgba(201,168,76,0.08);
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .why-card::before {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0);
+    transition: transform 0.4s; transform-origin: left;
+  }
+  .why-card:hover { background: rgba(201,168,76,0.04); }
+  .why-card:hover::before { transform: scaleX(1); }
+  .why-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; color: var(--gold-dim);
+    letter-spacing: 0.3em; margin-bottom: 1.5rem; display: block;
+  }
+  .why-card h3 {
+    font-size: 1.3rem; font-weight: 400; color: var(--ivory);
+    margin-bottom: 0.8rem; line-height: 1.3;
+  }
+  .why-card p {
+    font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* ── EVENTS ── */
+  .events-wrap { margin-top: 4rem; }
+  .event-row {
+    display: flex; align-items: flex-start;
+    gap: 3rem; padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    transition: all 0.3s;
+  }
+  .event-row:first-child { border-top: 1px solid rgba(201,168,76,0.1); }
+  .event-row:hover { padding-left: 1rem; }
+  .event-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--gold); letter-spacing: 0.2em;
+    min-width: 120px; margin-top: 0.3rem;
+  }
+  .event-title { font-size: 1.6rem; font-weight: 300; margin-bottom: 0.4rem; }
+  .event-desc { font-size: 0.9rem; color: var(--text-muted); font-style: italic; line-height: 1.7; }
+  .event-badge {
+    display: inline-block; margin-top: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    border: 1px solid rgba(201,168,76,0.3); color: var(--gold);
+  }
+
+  /* ── STATS ── */
+  .stats-outer {
+    background: var(--obsidian-mid);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    padding: 5rem 2rem;
+  }
+  .stats-inner { max-width: 1100px; margin: 0 auto; }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0; margin-top: 3rem;
+  }
+  .stat-item {
+    padding: 2rem;
+    border-right: 1px solid rgba(201,168,76,0.1);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300;
+    color: var(--gold); line-height: 1;
+    font-family: 'Cormorant Garamond', serif;
+    display: block; margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ── VISION ── */
+  .vision-split {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+    margin-top: 4rem;
+  }
+  @media (max-width: 700px) {
+    .vision-split { grid-template-columns: 1fr; gap: 3rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .event-row { flex-direction: column; gap: 0.5rem; }
+    .event-row:hover { padding-left: 0; }
+  }
+  .vision-quote {
+    font-size: 1.5rem; font-weight: 300; font-style: italic;
+    line-height: 1.6; color: var(--ivory);
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+  }
+  .vision-points { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem; }
+  .vision-pt {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .vision-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); margin-top: 0.55rem; flex-shrink: 0;
+  }
+  .vision-pt p { font-size: 0.95rem; color: var(--text-muted); font-style: italic; line-height: 1.8; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--obsidian-mid);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 3rem;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1.5rem; text-align: center;
+  }
+  .footer-logo {
+    font-size: 1.2rem; letter-spacing: 0.3em;
+    color: var(--gold); font-weight: 300; text-transform: uppercase;
+  }
+  .footer-domain {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.15em;
+  }
+  .footer-flag {
+    font-size: 1.8rem; letter-spacing: 0.2rem;
+  }
+  .footer-legal {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    color: var(--text-dim); letter-spacing: 0.15em;
+  }
+
+  /* ── CHESS PIECE DECO ── */
+  .piece-deco {
+    position: absolute;
+    font-size: 8rem; opacity: 0.04;
+    pointer-events: none; user-select: none;
+    color: var(--gold);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s, transform 0.7s; }
+  .revealed { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Karnataka Chess Bid</div>
+  <div class="nav-links">
+    <a href="#why">Why Karnataka</a>
+    <a href="#events">Events</a>
+    <a href="#vision">Vision</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="chess-grid"></div>
+  <span class="piece-deco" style="top:15%; left:5%;">♔</span>
+  <span class="piece-deco" style="top:60%; right:6%;">♛</span>
+  <span class="piece-deco" style="bottom:10%; left:40%;">♞</span>
+
+  <p class="hero-eyebrow">Karnataka, India · Official Bid Proposal</p>
+  <h1 class="hero-title">
+    World Chess<br>
+    <em>Championship</em>
+  </h1>
+  <div class="hero-year">2026</div>
+  <p class="hero-sub">
+    Karnataka invites the world to witness history where ancient wisdom
+    meets modern ambition — the chess capital of Asia.
+  </p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">Explore the Bid</button>
+    <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner" id="mq"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHY KARNATAKA -->
+<section id="why">
+  <p class="section-label reveal">The Case for Karnataka</p>
+  <h2 class="section-title reveal">Where Chess <em>was Born</em><br>to the World</h2>
+  <p class="section-body reveal">India gave chess to civilization. Karnataka returns it — with world-class infrastructure, a billion fans, and the cultural gravitas to make this championship historic.</p>
+
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <span class="why-num">01</span>
+      <h3>Chess Heritage</h3>
+      <p>Home to legendary Grandmasters. Karnataka has produced champions who shaped modern chess theory.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">02</span>
+      <h3>Tech Capital of Asia</h3>
+      <p>Bengaluru's Silicon Valley infrastructure ensures seamless live broadcast to 500M+ viewers globally.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">03</span>
+      <h3>Royal Hospitality</h3>
+      <p>Palace venues, 5-star hospitality districts, and a city that knows how to host the world.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">04</span>
+      <h3>Government Backing</h3>
+      <p>Full Karnataka government support, dedicated organizing committee, and committed infrastructure budget.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">05</span>
+      <h3>Women's Championship</h3>
+      <p>Co-hosting the Women's World Chess Championship — a historic first for South Asia.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">06</span>
+      <h3>Global Reach</h3>
+      <p>India's 1.4B population means unprecedented attendance, viewership, and commercial returns for FIDE.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<div class="stats-outer">
+  <div class="stats-inner">
+    <p class="section-label reveal">By the Numbers</p>
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-num">1.4B</span>
+        <span class="stat-label">Population Reach</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num">60M</span>
+        <span class="stat-label">Chess Players in India</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num">500+</span>
+        <span class="stat-label">Hotel Rooms · 5-Star</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num">2</span>
+        <span class="stat-label">Championships · One City</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Cultural Legacy</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<section id="events">
+  <p class="section-label reveal">Championship Structure</p>
+  <h2 class="section-title reveal">Two Titles.<br><em>One Historic</em> Stage.</h2>
+
+  <div class="events-wrap">
+    <div class="event-row reveal">
+      <div class="event-date">April 2026</div>
+      <div>
+        <h3 class="event-title">World Chess Championship 2026</h3>
+        <p class="event-desc">The world's greatest chess minds battle for the ultimate crown. Bengaluru hosts the classical format across 14 games of the highest stakes chess ever played in Asia.</p>
+        <span class="event-badge">Classical Format · 14 Games</span>
+      </div>
+    </div>
+    <div class="event-row reveal">
+      <div class="event-date">May 2026</div>
+      <div>
+        <h3 class="event-title">Women's World Chess Championship</h3>
+        <p class="event-desc">A landmark event for gender equity in sport. The Women's Championship returns to the subcontinent for the first time, inspiring a generation of Indian girls to pick up the board.</p>
+        <span class="event-badge">Historic · South Asia First</span>
+      </div>
+    </div>
+    <div class="event-row reveal">
+      <div class="event-date">Ongoing</div>
+      <div>
+        <h3 class="event-title">Chess Festival & Public Outreach</h3>
+        <p class="event-desc">Simultaneous exhibitions, school programs, a Chess Walk of Fame, and a 10,000-player blitz tournament open to the public — making chess belong to everyone.</p>
+        <span class="event-badge">Public Event · Free Entry</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VISION -->
+<section id="vision">
+  <p class="section-label reveal">Our Vision</p>
+  <h2 class="section-title reveal">More Than a<br><em>Championship.</em></h2>
+
+  <div class="vision-split">
+    <div class="reveal">
+      <blockquote class="vision-quote">
+        "Karnataka does not just want to host chess. We want to return chess to where it belongs — to the civilization that gave it to the world."
+      </blockquote>
+    </div>
+    <div class="vision-points reveal">
+      <div class="vision-pt">
+        <div class="vision-dot"></div>
+        <p>A permanent Chess Centre of Excellence in Bengaluru, legacy infrastructure beyond the tournament.</p>
+      </div>
+      <div class="vision-pt">
+        <div class="vision-dot"></div>
+        <p>AI-powered live commentary in 12 Indian languages, bringing chess to every household.</p>
+      </div>
+      <div class="vision-pt">
+        <div class="vision-dot"></div>
+        <p>Full gender parity: equal prize funds, equal media coverage, equal celebration.</p>
+      </div>
+      <div class="vision-pt">
+        <div class="vision-dot"></div>
+        <p>Cultural programming linking Karnataka's royal chess history to the modern game.</p>
+      </div>
+      <div class="vision-pt">
+        <div class="vision-dot"></div>
+        <p>Estimated $200M+ economic impact for Karnataka over the championship period.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="text-align:center; padding-bottom: 4rem;">
+  <p class="section-label reveal" style="justify-content: center;">Contact the Bid Committee</p>
+  <h2 class="section-title reveal" style="text-align:center">Ready to Make<br><em>History Together?</em></h2>
+  <p class="section-body reveal" style="margin: 0 auto 3rem; text-align:center;">We welcome FIDE officials, sponsors, media, and partners to explore this unprecedented opportunity.</p>
+  <div class="reveal" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <button class="btn-primary">Download Full Bid Document</button>
+    <button class="btn-ghost">Schedule a Presentation</button>
+  </div>
+  <p class="reveal" style="margin-top:2rem; font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--text-dim); letter-spacing:0.2em;">WORLDCHESSCHAMPIONSHIP26.COM</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-flag">🇮🇳</div>
+  <div class="footer-logo">Karnataka Chess Bid · 2026</div>
+  <div class="footer-domain">worldchesschampionship26.com</div>
+  <div class="footer-legal">A proposal to FIDE by the Government of Karnataka, India · All rights reserved 2025</div>
+</footer>
+
+<script>
+  const items = [
+    "World Chess Championship 2026",
+    "Karnataka India",
+    "Women's World Championship",
+    "Bengaluru",
+    "FIDE Official Bid",
+    "Chess Heritage of India",
+    "Silicon Valley of Asia",
+    "60 Million Chess Players",
+  ];
+  const mq = document.getElementById('mq');
+  const doubled = [...items, ...items, ...items, ...items];
+  doubled.forEach(t => {
+    const el = document.createElement('span');
+    el.className = 'marquee-item';
+    el.innerHTML = `<span>♟</span>${t}`;
+    mq.appendChild(el);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
