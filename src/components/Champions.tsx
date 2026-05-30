@@ -12,7 +12,7 @@ export function Champions() {
           <div className="max-w-2xl">
             <h2 className="text-5xl md:text-[84px] leading-[0.85] font-light uppercase italic mb-6 text-gold">A Royal<br/><span className="mt-2 block">Crowning</span></h2>
             <p className="font-mono text-[10px] md:text-xs uppercase opacity-80 tracking-wider leading-relaxed">
-              Visualizing the ultimate triumph on home soil. A historic double victory where Indian prodigies D. Gukesh and R. Vaishali lift the World Championship trophies, felicitated by the leadership of Karnataka.
+              Visualizing the ultimate triumph on home soil. A historic double victory where Indian prodigies D. Gukesh and R. Vaishali lift the World Championship trophies before a passionate home crowd.
             </p>
           </div>
           <span className="font-mono text-gold text-[10px] tracking-[0.4em] uppercase opacity-60 border-l border-gold/30 pl-4">The 2026 Vision</span>
@@ -38,7 +38,7 @@ export function Champions() {
               <div className="mt-2 p-4 border border-gold/20 bg-obsidian/90 z-10 flex-1 flex flex-col justify-center">
                 <span className="font-mono text-gold text-[9px] tracking-[0.3em] uppercase block mb-2 opacity-60">Open Championship Vision</span>
                 <span className="text-lg uppercase italic text-gold block leading-tight mb-2">D. Gukesh Crowned Champion</span>
-                <span className="font-mono text-[9px] text-white/70 block uppercase tracking-widest leading-relaxed">Felicitated by Shri Rahul Gandhi, CM Siddaramaiah & Deputy CM D.K. Shivakumar</span>
+                <span className="font-mono text-[9px] text-white/70 block uppercase tracking-widest leading-relaxed">Lifting the ultimate trophy on home soil in Bengaluru</span>
               </div>
           </motion.div>
 
@@ -61,7 +61,7 @@ export function Champions() {
               <div className="mt-2 p-4 border border-gold/20 bg-obsidian/90 z-10 flex-1 flex flex-col justify-center">
                 <span className="font-mono text-gold text-[9px] tracking-[0.3em] uppercase block mb-2 opacity-60">Women's Championship Vision</span>
                 <span className="text-lg uppercase italic text-gold block leading-tight mb-2">R. Vaishali Makes History</span>
-                <span className="font-mono text-[9px] text-white/70 block uppercase tracking-widest leading-relaxed">Felicitated by Shri Rahul Gandhi, CM Siddaramaiah & Deputy CM D.K. Shivakumar</span>
+                <span className="font-mono text-[9px] text-white/70 block uppercase tracking-widest leading-relaxed">Lifting the ultimate trophy on home soil in Bengaluru</span>
               </div>
           </motion.div>
         </div>

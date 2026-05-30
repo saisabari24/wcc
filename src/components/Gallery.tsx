@@ -38,6 +38,12 @@ const MEDIA = [
     url: "/gallery-kia-terminal.jpg",
     alt: "KIA Terminal Welcome",
     caption: "Airport Arrivals"
+  },
+  {
+    type: 'image' as const,
+    url: "/gallery-mysore-palace.jpg",
+    alt: "Mysuru Palace Display",
+    caption: "Royal Heritage"
   }
 ];
 
@@ -63,10 +69,10 @@ export function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`relative group overflow-hidden border border-gold/10 bg-gold/5 p-2 flex flex-col h-full ${i === 0 || i === 5 ? 'md:col-span-2' : ''}`}
+              className={`relative group overflow-hidden border border-gold/10 bg-gold/5 p-2 flex flex-col h-full ${i === 0 ? 'md:col-span-2' : ''}`}
             >
               <EnlargeButton onClick={() => openLightbox(item.url, item.type, item.caption)} />
-              <div className={`relative w-full overflow-hidden flex-shrink-0 aspect-square ${i === 0 || i === 5 ? 'md:aspect-[21/9]' : 'md:aspect-[4/3]'}`}>
+              <div className={`relative w-full overflow-hidden flex-shrink-0 aspect-square ${i === 0 ? 'md:aspect-[21/9]' : 'md:aspect-[4/3]'}`}>
                 {item.type === 'video' ? (
                   <video 
                     src={item.url}
