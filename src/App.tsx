@@ -5,6 +5,7 @@ import { Statement } from './components/Statement';
 import { Pillars } from './components/Pillars';
 import { Stats } from './components/Stats';
 import { Champions } from './components/Champions';
+import { Grassroots } from './components/Grassroots';
 import { Gallery } from './components/Gallery';
 import { Footer } from './components/Footer';
 import { LightboxProvider } from './components/Lightbox';
@@ -24,6 +25,7 @@ export default function App() {
         <Hero />
         <Statement />
         <Champions />
+        <Grassroots />
         <Gallery />
         <Pillars />
         <Stats />
